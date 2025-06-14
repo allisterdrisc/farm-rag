@@ -11,4 +11,5 @@ node_modules/
 # Ignore any OS or editor specific files 
 .DS_Store
 Thumbs.db
-*.log
+*.log.env
+node_modules/
