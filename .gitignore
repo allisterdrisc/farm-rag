@@ -13,3 +13,7 @@ node_modules/
 Thumbs.db
 *.log.env
 node_modules/
+
+# Ignore Python cache folders
+__pycache__/
+*.pyc
