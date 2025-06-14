@@ -1,0 +1,125 @@
+html, body {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  background: #57913387;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100%;
+  width: 100%;
+  font-family: Arial, sans-serif;
+}
+
+#root > h1 {
+  margin-bottom: 16px;
+  margin-top: 16px;
+  text-align: center;
+  font-size: 2.5rem;
+}
+
+.chat-container {
+  display: flex;
+  flex-direction: column;
+  height: 80vh;
+  max-width: 800px;
+  width: 95%;
+  margin: 0 auto;
+  border: 1px solid #ddd;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+  background: #fff;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.message-list {
+  flex-grow: 1;
+  padding: 20px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  background: #fafafa;
+}
+
+.message-bubble {
+  max-width: 70%;
+  padding: 12px 16px;
+  border-radius: 16px;
+  line-height: 1.4;
+  word-wrap: break-word;
+}
+
+.message-bubble.user {
+  align-self: flex-end;
+  background: #e1ffc7;
+  border-bottom-left-radius: 4px;
+}
+
+.message-bubble.bot {
+  align-self: flex-start;
+  background: #daf0ff;
+  border-bottom-right-radius: 4px;
+}
+
+.answer-box {
+  flex-grow: 1;
+  padding: 20px;
+  overflow-y: auto;
+  font-size: 1.3rem;
+  line-height: 1.4;
+  color: #222;
+  background: #f9f9f9;
+  border-bottom: 1px solid #ddd;
+  border-radius: 20px 20px 0 0;
+}
+
+.question-form {
+  display: flex;
+  padding: 12px 16px;
+  width: 100%;
+  background: #fff;
+  border-radius: 0 0 20px 20px;
+  border-top: 1px solid #ddd;
+  box-sizing: border-box;
+  gap: 12px;
+  align-items: center;
+}
+
+.question-input {
+  flex-grow: 1;
+  font-size: 1rem;
+  padding: 12px 16px;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  resize: none;
+  outline: none;
+  min-height: 60px;
+  max-height: 100px;
+  line-height: 1.4;
+  box-sizing: border-box;
+}
+
+.question-input:focus {
+  border-color: #579133;
+  box-shadow: 0 0 5px rgba(77, 165, 30, 0.4);
+}
+
+.question-form button {
+  padding: 12px 20px;
+  font-size: 1rem;
+  background-color: #579133;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.question-form button:focus {
+  outline: none;
+  box-shadow: none;
+}
