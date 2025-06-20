@@ -4,7 +4,7 @@ A Retrieval-Augmented Generation (RAG) system that allows users to ask questions
 
 ---
 
-## 🧠 What It Does
+## What It Does
 
 - Parses and processes PDF data about crops, harvests, and revenue
 - Embeds the data using OpenAI and stores it in PostgreSQL with `pgvector`
@@ -13,7 +13,7 @@ A Retrieval-Augmented Generation (RAG) system that allows users to ask questions
 
 ---
 
-## 🛠️ Tech Stack
+## Tech Stack
 
 - **Backend:** Python, Flask, LangChain
 - **AI/LLM:** OpenAI GPT-4o (via `openai` SDK)
@@ -26,8 +26,8 @@ A Retrieval-Augmented Generation (RAG) system that allows users to ask questions
 
 ---
 
-## 📂 Project Structure
-
+## Project Structure
+```bash
 farm-rag/
 ├── client/
 │ └── src/
@@ -57,10 +57,10 @@ farm-rag/
 ├── .env # API keys (not committed)
 ├── .gitignore
 └── README.md
-
+```
 ---
 
-## ⚙️ Setup Instructions
+## Setup Instructions
 
 ### 1. Clone the Repository
 ```bash
@@ -113,5 +113,5 @@ http://localhost:5173/
 - Add login/authentication
 - Add user query history
 
-## 👤 Author
+## Author
 Allister Driscoll
