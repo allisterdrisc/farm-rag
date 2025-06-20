@@ -85,18 +85,28 @@ OPENAI_API_KEY=your-openai-api-key
 DATABASE_URL=postgresql://user:password@localhost:5432/yourdb
 ```
 
-### 5. Pre-process the PDF Data
+### 5. Set Up the Database
+```bash
+createdb farm_db
+```
+
+### 6. Create the Table and Enable `pgvector` Extenstion
+```bash
+psql farm_db < server/db/schema.sql
+```
+
+### 7. Pre-process the PDF Data
 ```bash
 cd server/src
 python pre_processing.py
 ```
 
-### 6. Start the Backend Server
+### 8. Start the Backend
 ```bash
 python api.py
 ```
 
-### 7. Start the frontend
+### 9. Start the Frontend
 - In a separate terminal:
 ```bash
 cd client
@@ -104,7 +114,7 @@ npm install
 npm run dev
 ```
 
-### 8. Access the App
+### 10. Access the App
 - Once both servers are running, open your browser and go to:
 http://localhost:5173/
 
