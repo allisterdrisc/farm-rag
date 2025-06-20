@@ -27,7 +27,7 @@ A Retrieval-Augmented Generation (RAG) system that allows users to ask questions
 ---
 
 ## Project Structure
-
+```bash
 farm-rag/
 ├── client/
 │ └── src/
@@ -57,7 +57,7 @@ farm-rag/
 ├── .env # API keys (not committed)
 ├── .gitignore
 └── README.md
-
+```
 ---
 
 ## Setup Instructions
