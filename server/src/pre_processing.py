@@ -9,6 +9,7 @@ from pydantic import BaseModel, Field
 from typing import List
 import instructor
 import shutil
+import re
 
 load_dotenv()
 
@@ -92,10 +93,27 @@ def generate_embedding(text: str):
         print(f"Error generating embedding: {e}")
         return None
 
+def normalize_crop_name(name: str) -> str:
+    """Simplify crop name variants into the known crop name. Ex: 'Kale Dino - Big Y A' => 'Kale'"""
+    name = name.strip().lower()
+    
+    known_crops = [
+      "kale", "lettuce", "squash", "tomato", "radish", "carrot", "beet",
+        "onion", "pepper", "potato", "turnip", "eggplant", "arugula",
+        "leek", "cabbage", "popcorn", "dry beans", "sweet potato", "arugula"
+    ]
+
+    for crop in known_crops:
+        if crop in name:
+            return crop.title()
+
+    return name.title()
+
 def store_crops(crops: List[Crop], conn):
     """Store crop data and embeddings in the database."""
     with conn.cursor() as cur:
         for crop in crops:
+            clean_name = normalize_crop_name(crop.name)
             # Create a text summary for embedding (you can customize this)
             summary_text = (
                 f"{crop.name}, seed cost: {crop.total_seed_cost}, "
@@ -109,9 +127,10 @@ def store_crops(crops: List[Crop], conn):
             
             cur.execute("""
                 INSERT INTO crop_entries 
-                (name, total_seed_cost, pounds_harvested, total_revenue, total_profit, embedding)
-                VALUES (%s, %s, %s, %s, %s, %s)
+                (name, detailed_name, total_seed_cost, pounds_harvested, total_revenue, total_profit, embedding)
+                VALUES (%s, %s, %s, %s, %s, %s, %s)
             """, (
+                clean_name,
                 crop.name,
                 crop.total_seed_cost,
                 crop.pounds_harvested,

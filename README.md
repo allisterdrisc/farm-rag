@@ -82,7 +82,8 @@ pip install -r requirements.txt
 ### 4. Create a .env file 
 ```env
 OPENAI_API_KEY=your-openai-api-key
-DATABASE_URL=postgresql://user:password@localhost:5432/yourdb
+POSTGRES_USER=your-user
+POSTGRES_PASSWORD=your-password
 ```
 
 ### 5. Set Up the Database

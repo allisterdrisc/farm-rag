@@ -3,7 +3,7 @@ from flask_cors import CORS
 from farm_agent import ask_farm_agent
 
 app = Flask(__name__)
-CORS(app, resources={r"/api/*": {"origins": "http://localhost:5173"}})
+CORS(app, resources={r"/api/*": {"origins": ["http://localhost:5173", "http://localhost:5174"]}})
 
 @app.route('/api/ask', methods=['POST', 'OPTIONS'])
 def ask():

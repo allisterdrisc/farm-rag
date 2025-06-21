@@ -7,6 +7,7 @@ export const QuestionForm = ({ onSubmit, onChange, question }) => {
       'Did we grow cabbage?',
       'Was kale a successful crop?',
       'What was the most profitable crop?',
+      'What were all the crops we grew?',
     ]
 
     const randomIdx = Math.floor(Math.random() * questions.length);

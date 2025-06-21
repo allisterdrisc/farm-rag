@@ -1,19 +1,9 @@
-# Ignore environment variable files with secrets
 .env
-
-# Ignore Python virtual environment folder
 .venv/
 venv/
-
-# Ignore Node.js dependencies folder
-node_modules/
-
-# Ignore any OS or editor specific files 
 .DS_Store
 Thumbs.db
 *.log.env
 node_modules/
-
-# Ignore Python cache folders
 __pycache__/
 *.pyc

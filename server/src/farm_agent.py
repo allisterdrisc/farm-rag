@@ -26,7 +26,7 @@ def most_cost_efficient_crop() -> str:
     try:
         with conn.cursor() as cur:
             cur.execute("""
-                SELECT name, total_profit, total_seed_cost,
+                SELECT detailed_name, total_profit, total_seed_cost,
                        (total_profit / NULLIF(total_seed_cost, 0)) AS efficiency
                 FROM crop_entries
                 WHERE total_profit IS NOT NULL AND total_seed_cost IS NOT NULL AND total_seed_cost != 0
@@ -51,7 +51,7 @@ def most_profitable_crop() -> str:
     try:
         with conn.cursor() as cur:
             cur.execute("""
-                SELECT name, total_profit
+                SELECT detailed_name, total_profit
                 FROM crop_entries
                 WHERE total_profit IS NOT NULL
                 ORDER BY total_profit DESC
@@ -75,7 +75,7 @@ def largest_harvest_crop() -> str:
     try:
         with conn.cursor() as cur:
             cur.execute("""
-                SELECT name, pounds_harvested
+                SELECT detailed_name, pounds_harvested
                 FROM crop_entries
                 WHERE pounds_harvested IS NOT NULL
                 ORDER BY pounds_harvested DESC
@@ -92,7 +92,25 @@ def largest_harvest_crop() -> str:
     finally:
         conn.close()
 
-tools = [rag_query_tool, most_cost_efficient_crop, most_profitable_crop, largest_harvest_crop]
+@tool
+def list_all_crops() -> str:
+    """Returns a list of all the crops from the provided data."""
+    conn = get_db_connection()
+    try:
+        with conn.cursor() as cur:
+            cur.execute("SELECT DISTINCT name FROM crop_entries")
+            rows = cur.fetchall()
+            if rows:
+              crops = [row[0].strip() for row in rows if row[0]]
+              return f"The crops listed in your data are: {', '.join(crops)}."
+            else:
+              return "No crops were found in your data."
+    except Exception as e:
+        return f"Error during query: {str(e)}"
+    finally:
+        conn.close()
+
+tools = [rag_query_tool, most_cost_efficient_crop, most_profitable_crop, largest_harvest_crop, list_all_crops]
 
 # agent setup
 llm = ChatOpenAI(model=MODEL, temperature=0, api_key=API_KEY)
