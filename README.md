@@ -54,7 +54,7 @@ farm-rag/
 │ ├── rag_tools.py # Vector DB logic + query functions
 │ └── farm_agent.py # LangChain agent logic
 ├── requirements.txt
-├── .env # API keys (not committed)
+├── .env #(not committed)
 ├── .gitignore
 └── README.md
 ```
